@@ -12,9 +12,11 @@ fun TodosList(
     modifier: Modifier = Modifier,
     todoViewModel: TodoViewModel = viewModel()
 ){
-    LazyColumn{
-        items(todoViewModel.todos){todo ->
-            TodoItem(title = todo.title, checked = todo.checked, onCheckedChange = {})
+    LazyColumn(
+        modifier = modifier
+    ){
+        items(todoViewModel.todos.value){todo ->
+            TodoItem(title = todo.title, checked = todo.checked, onCheckedChange = {todoViewModel.onCheckedChange(todo)})
         }
     }
 }

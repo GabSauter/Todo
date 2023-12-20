@@ -1,5 +1,9 @@
 package com.example.todo.entities
 
-class Todo(val title: String, val checked: Boolean = false) {
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 
+data class Todo(val title: String){
+    var checked by mutableStateOf(false)
 }

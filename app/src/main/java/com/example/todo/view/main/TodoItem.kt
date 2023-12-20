@@ -22,7 +22,8 @@ import androidx.compose.ui.unit.sp
 fun TodoItem(title: String, checked: Boolean, onCheckedChange: () -> Unit, modifier: Modifier = Modifier){
     Surface(
         color = MaterialTheme.colorScheme.surface,
-        shape = MaterialTheme.shapes.medium
+        shape = MaterialTheme.shapes.medium,
+        modifier = modifier
     ){
         Row(
             verticalAlignment = Alignment.CenterVertically,
