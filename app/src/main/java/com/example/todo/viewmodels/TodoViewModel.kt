@@ -7,7 +7,7 @@ import com.example.todo.entities.Todo
 
 class TodoViewModel: ViewModel() {
     var todos: MutableState<List<Todo>> = mutableStateOf(
-        mutableListOf(Todo("Test test"), Todo("Test 2").apply { checked = true })
+        mutableListOf(Todo("Test test"), Todo("Test 2", true))
     )
 
     fun onCheckedChange(todo: Todo){
