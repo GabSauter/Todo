@@ -4,19 +4,25 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.todo.viewmodels.TodoViewModel
+import com.example.todo.entities.Todo
 
 @Composable
 fun TodosList(
-    modifier: Modifier = Modifier,
-    todoViewModel: TodoViewModel = viewModel()
+    todos: List<Todo>,
+    onCheckedChange: (todo: Todo) -> Unit,
+    modifier: Modifier = Modifier
 ){
     LazyColumn(
         modifier = modifier
     ){
-        items(todoViewModel.todos.value){todo ->
-            TodoItem(title = todo.title, checked = todo.checked, onCheckedChange = {todoViewModel.onCheckedChange(todo)})
+        items(todos){todo ->
+            TodoItem(
+                title = todo.title,
+                checked = todo.checked,
+                onCheckedChange = {
+                    onCheckedChange(todo)
+                }
+            )
         }
     }
 }
