@@ -11,23 +11,28 @@ import com.example.todo.db.TodoDatabase
 import com.example.todo.entities.Todo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class TodoViewModel(application: Application): AndroidViewModel(application) {
 
     private val dao: TodoDao
     var todoTitle: MutableState<String> = mutableStateOf("")
-    var todos: MutableList<Todo> = mutableStateListOf()
+    var todos = mutableStateListOf<Todo>()
 
     init{
         dao = TodoDatabase.getInstance(application).todoDao()
-//        loadTodos()
+        loadTodos()
     }
 
-//    private fun loadTodos(){
-//        viewModelScope.launch(Dispatchers.IO) {
-//            todos = dao.getAll().toMutableList()
-//        }
-//    }
+    private fun loadTodos(){
+        viewModelScope.launch(Dispatchers.IO) {
+            val todosData = dao.getAll()
+
+            withContext(Dispatchers.Main){
+                todos.addAll(todosData)
+            }
+        }
+    }
 
     fun addTodo(todo: Todo){
         todos.add(todo)
