@@ -1,17 +1,20 @@
 package com.example.todo.view.main
 
+import android.app.Application
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.compose.ui.platform.LocalContext
 import com.example.todo.viewmodels.TodoViewModel
 
 @Composable
 fun MainScreen(
-    modifier: Modifier = Modifier,
-    todoViewModel: TodoViewModel = viewModel(),
+    modifier: Modifier = Modifier
 ){
+    val application = LocalContext.current.applicationContext as Application
+    val todoViewModel = TodoViewModel(application)
+
     Scaffold(
         bottomBar = {
             AddTodo(

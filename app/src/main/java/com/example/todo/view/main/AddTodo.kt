@@ -37,7 +37,7 @@ fun AddTodo(
                 .padding(end = 8.dp)
         )
         IconButton(
-            onClick = { addTodo(Todo(title)) },
+            onClick = { addTodo(Todo(title = title)) },
             modifier = Modifier
                 .background(MaterialTheme.colorScheme.primary, shape = RoundedCornerShape(8.dp))
                 .size(58.dp)
