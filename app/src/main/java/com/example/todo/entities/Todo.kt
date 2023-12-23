@@ -10,7 +10,7 @@ import androidx.room.PrimaryKey
 data class Todo(
     @PrimaryKey(autoGenerate = true) val id: Int? = null,
     val title: String,
-    val check: Boolean = false
+    var check: Boolean = false
 ){
     var checked by mutableStateOf(check)
 }

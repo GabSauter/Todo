@@ -17,7 +17,7 @@ class TodoViewModel(application: Application): AndroidViewModel(application) {
 
     private val dao: TodoDao
     var todoTitle: MutableState<String> = mutableStateOf("")
-    var todos = mutableStateListOf<Todo>()
+    val todos = mutableStateListOf<Todo>()
 
     init{
         dao = TodoDatabase.getInstance(application).todoDao()
@@ -41,10 +41,16 @@ class TodoViewModel(application: Application): AndroidViewModel(application) {
             dao.add(todo)
         }
     }
+
     fun updateTodoInput(title: String){
         todoTitle.value = title
     }
+
     fun onCheckedChange(todo: Todo){
         todo.checked = !todo.checked
+        todo.check = !todo.check
+        viewModelScope.launch(Dispatchers.IO) {
+            dao.update(todo)
+        }
     }
 }
