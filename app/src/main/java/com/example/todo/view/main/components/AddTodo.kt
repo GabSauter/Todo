@@ -1,4 +1,4 @@
-package com.example.todo.view.main
+package com.example.todo.view.main.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row

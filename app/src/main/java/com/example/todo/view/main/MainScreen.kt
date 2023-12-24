@@ -6,6 +6,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import com.example.todo.view.main.components.AddTodo
+import com.example.todo.view.main.components.TodosList
 import com.example.todo.viewmodels.TodoViewModel
 
 @Composable
