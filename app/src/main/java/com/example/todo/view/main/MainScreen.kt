@@ -6,6 +6,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import com.example.todo.entities.Todo
 import com.example.todo.view.main.components.AddTodo
 import com.example.todo.view.main.components.TodosList
 import com.example.todo.viewmodels.TodoViewModel
@@ -29,7 +30,8 @@ fun MainScreen(
     ) { padding ->
         TodosList(
             todos = todoViewModel.todos,
-            onCheckedChange = { todo -> todoViewModel.onCheckedChange(todo) },
+            onCheckedChange = { todo: Todo -> todoViewModel.onCheckedChange(todo) },
+            onDismissed = {todo: Todo -> todoViewModel.deleteTodo(todo)},
             modifier = Modifier.padding(padding)
         )
     }

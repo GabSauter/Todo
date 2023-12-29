@@ -35,10 +35,17 @@ class TodoViewModel(application: Application): AndroidViewModel(application) {
     }
 
     fun addTodo(todo: Todo){
-        todos.add(todo)
         todoTitle.value = ""
         viewModelScope.launch(Dispatchers.IO) {
-            dao.add(todo)
+            todo.id = dao.add(todo).toInt()
+            todos.add(todo)
+        }
+    }
+
+    fun deleteTodo(todo: Todo){
+        todos.remove(todo)
+        viewModelScope.launch(Dispatchers.IO) {
+            dao.delete(todo)
         }
     }
 

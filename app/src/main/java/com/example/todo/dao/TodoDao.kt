@@ -1,6 +1,7 @@
 package com.example.todo.dao
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
@@ -12,7 +13,10 @@ interface TodoDao {
     suspend fun getAll(): List<Todo>
 
     @Insert
-    suspend fun add(todo: Todo)
+    suspend fun add(todo: Todo): Long
+
+    @Delete
+    suspend fun delete(todo: Todo)
 
     @Update
     suspend fun update(todo: Todo)
